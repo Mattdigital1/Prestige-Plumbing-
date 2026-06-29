@@ -1,77 +1,98 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { BUSINESS, NAV_LINKS } from '@/lib/config/business'
+import { BUSINESS } from '@/lib/config/business'
 
 interface MobileNavProps {
   isOpen: boolean
   onClose: () => void
 }
 
+const SERVICE_LINKS = [
+  { label: 'Emergency Plumbing', href: '/emergency' },
+  { label: 'Residential Plumbing', href: '/services#residential' },
+  { label: 'Commercial Plumbing', href: '/services#commercial' },
+  { label: 'New Construction', href: '/services#commercial' },
+  { label: 'Water Heaters', href: '/services#water-heaters' },
+  { label: 'Plumbing Remodels', href: '/services#remodels' },
+  { label: 'Pipe Repair', href: '/services#repairs' },
+  { label: 'Drain & Sewer', href: '/services#drain-sewer' },
+  { label: 'View All Services', href: '/services' },
+]
+
+const AREA_LINKS = [
+  { label: 'Biloxi', href: '/service-areas/biloxi' },
+  { label: 'Ocean Springs', href: '/service-areas/ocean-springs' },
+  { label: 'Gulfport', href: '/service-areas/gulfport' },
+  { label: 'Bay St. Louis', href: '/service-areas/bay-st-louis' },
+  { label: 'Vancleave', href: '/service-areas/vancleave' },
+  { label: "D'Iberville", href: '/service-areas/diberville' },
+  { label: 'Gautier', href: '/service-areas/gautier' },
+  { label: 'Pascagoula', href: '/service-areas/pascagoula' },
+  { label: 'All Service Areas', href: '/service-areas' },
+]
+
+const FLAT_LINKS = [
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/about' },
+  { label: 'Reviews', href: '/reviews' },
+  { label: 'Gallery', href: '/gallery' },
+  { label: 'Contact', href: '/contact' },
+]
+
 export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
   const panelRef = useRef<HTMLDivElement>(null)
   const closeBtnRef = useRef<HTMLButtonElement>(null)
+  const [openSection, setOpenSection] = useState<string | null>(null)
+
+  const toggleSection = (section: string) => {
+    setOpenSection(prev => prev === section ? null : section)
+  }
 
   // Close on Escape key
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === 'Escape' && isOpen) {
-        onClose()
-      }
+      if (e.key === 'Escape' && isOpen) onClose()
     }
     document.addEventListener('keydown', handleKeyDown)
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [isOpen, onClose])
 
-  // Focus the close button when menu opens
+  // Focus close button when menu opens; lock body scroll
   useEffect(() => {
     if (isOpen) {
       closeBtnRef.current?.focus()
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = ''
+      setOpenSection(null)
     }
-    return () => {
-      document.body.style.overflow = ''
-    }
+    return () => { document.body.style.overflow = '' }
   }, [isOpen])
 
   // Trap focus within panel
   useEffect(() => {
     if (!isOpen) return
-
     const panel = panelRef.current
     if (!panel) return
-
     const focusableSelectors =
       'a[href], button:not([disabled]), input, textarea, select, [tabindex]:not([tabindex="-1"])'
-
     function handleTab(e: KeyboardEvent) {
       if (e.key !== 'Tab') return
       const focusable = Array.from(
         panel!.querySelectorAll<HTMLElement>(focusableSelectors)
-      ).filter((el) => !el.closest('[aria-hidden="true"]'))
-
+      ).filter(el => !el.closest('[aria-hidden="true"]'))
       if (focusable.length === 0) return
-
       const first = focusable[0]
       const last = focusable[focusable.length - 1]
-
       if (e.shiftKey) {
-        if (document.activeElement === first) {
-          e.preventDefault()
-          last.focus()
-        }
+        if (document.activeElement === first) { e.preventDefault(); last.focus() }
       } else {
-        if (document.activeElement === last) {
-          e.preventDefault()
-          first.focus()
-        }
+        if (document.activeElement === last) { e.preventDefault(); first.focus() }
       }
     }
-
     document.addEventListener('keydown', handleTab)
     return () => document.removeEventListener('keydown', handleTab)
   }, [isOpen])
@@ -112,15 +133,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
             aria-label="Close navigation menu"
             className="rounded-md p-2 text-gray-300 hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
           >
-            {/* X icon */}
-            <svg
-              className="h-5 w-5"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
+            <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
@@ -129,17 +142,104 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
         {/* Nav links */}
         <nav aria-label="Mobile navigation" className="flex-1 overflow-y-auto px-4 py-6">
           <ul className="space-y-1">
-            {NAV_LINKS.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  onClick={onClose}
-                  className="flex items-center rounded-md px-3 py-3 text-base font-medium text-gray-200 hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+
+            {/* Home */}
+            <li>
+              <Link href="/" onClick={onClose} className="flex items-center rounded-md px-3 py-3 text-base font-medium text-gray-200 hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                Home
+              </Link>
+            </li>
+
+            {/* About */}
+            <li>
+              <Link href="/about" onClick={onClose} className="flex items-center rounded-md px-3 py-3 text-base font-medium text-gray-200 hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
+                About
+              </Link>
+            </li>
+
+            {/* Services accordion */}
+            <li>
+              <button
+                type="button"
+                onClick={() => toggleSection('services')}
+                aria-expanded={openSection === 'services'}
+                className="flex w-full items-center justify-between rounded-md px-3 py-3 text-base font-medium text-gray-200 hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+              >
+                Services
+                <svg
+                  className={`h-4 w-4 flex-shrink-0 transition-transform duration-200 ${openSection === 'services' ? 'rotate-180' : ''}`}
+                  fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24" aria-hidden="true"
                 >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                </svg>
+              </button>
+              {openSection === 'services' && (
+                <ul className="ml-3 mt-1 space-y-0.5 border-l border-white/10 pl-4">
+                  {SERVICE_LINKS.map(item => (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        onClick={onClose}
+                        className={`flex items-center rounded-md px-3 py-2.5 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                          item.label.startsWith('View All') || item.label.startsWith('All')
+                            ? 'text-blue-400 hover:text-blue-300 hover:bg-white/5'
+                            : 'text-gray-300 hover:bg-white/10 hover:text-white'
+                        }`}
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+
+            {/* Service Areas accordion */}
+            <li>
+              <button
+                type="button"
+                onClick={() => toggleSection('areas')}
+                aria-expanded={openSection === 'areas'}
+                className="flex w-full items-center justify-between rounded-md px-3 py-3 text-base font-medium text-gray-200 hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+              >
+                Service Areas
+                <svg
+                  className={`h-4 w-4 flex-shrink-0 transition-transform duration-200 ${openSection === 'areas' ? 'rotate-180' : ''}`}
+                  fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24" aria-hidden="true"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                </svg>
+              </button>
+              {openSection === 'areas' && (
+                <ul className="ml-3 mt-1 space-y-0.5 border-l border-white/10 pl-4">
+                  {AREA_LINKS.map(item => (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        onClick={onClose}
+                        className={`flex items-center rounded-md px-3 py-2.5 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                          item.label.startsWith('View All') || item.label.startsWith('All')
+                            ? 'text-blue-400 hover:text-blue-300 hover:bg-white/5'
+                            : 'text-gray-300 hover:bg-white/10 hover:text-white'
+                        }`}
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+
+            {/* Reviews, Gallery, Contact */}
+            {FLAT_LINKS.slice(2).map(link => (
+              <li key={link.href}>
+                <Link href={link.href} onClick={onClose} className="flex items-center rounded-md px-3 py-3 text-base font-medium text-gray-200 hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
                   {link.label}
                 </Link>
               </li>
             ))}
+
           </ul>
         </nav>
 
@@ -157,20 +257,8 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
             className="flex w-full items-center justify-center gap-2 rounded-md border border-white/20 bg-white/5 px-4 py-3 text-sm font-semibold text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-[#0d1b2a] transition-colors"
             aria-label={`Call us at ${BUSINESS.phone}`}
           >
-            {/* Phone icon */}
-            <svg
-              className="h-4 w-4 flex-shrink-0"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
-              />
+            <svg className="h-4 w-4 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
             </svg>
             Call {BUSINESS.phone}
           </a>

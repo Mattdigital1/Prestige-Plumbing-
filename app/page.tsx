@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import dynamic from 'next/dynamic'
 
 import Hero from '@/components/sections/Hero'
+import GHLForm from '@/components/ui/GHLForm'
 import QuickQuoteForm from '@/components/sections/QuickQuoteForm'
 import WhyChooseUs from '@/components/sections/WhyChooseUs'
 import ServicesOverview from '@/components/sections/ServicesOverview'
@@ -57,6 +58,22 @@ export default function HomePage() {
     <>
       {/* 1. Hero */}
       <Hero />
+
+      {/* Mobile-only quote form — desktop sees form inside hero */}
+      <section className="lg:hidden bg-[#1e3a5f] px-4 py-10">
+        <div className="mx-auto max-w-xl">
+          <h2 className="mb-1 text-xl font-extrabold text-white text-center">Get a Free Estimate</h2>
+          <p className="mb-6 text-sm text-slate-300 text-center">
+            Fill out the form or call{' '}
+            <a href={BUSINESS.phoneLink} className="font-semibold text-blue-300 hover:text-blue-200">
+              {BUSINESS.phone}
+            </a>
+          </p>
+          <div className="overflow-hidden rounded-xl bg-white">
+            <GHLForm instanceId="inline-Gv4w0P5hFGGrQTL5Qcbe-mobile" />
+          </div>
+        </div>
+      </section>
 
       {/* 2. About / founder — WhyChooseUs */}
       <WhyChooseUs />
