@@ -10,12 +10,7 @@ export default function ServiceRequestForm({
   instanceId,
 }: ServiceRequestFormProps) {
   return (
-    <div
-      className={[
-        'overflow-hidden rounded-xl',
-        darkBackground ? 'ring-1 ring-white/20' : 'shadow-lg ring-1 ring-slate-200',
-      ].join(' ')}
-    >
+    <div className="overflow-hidden rounded-xl">
       <GHLForm instanceId={instanceId} />
     </div>
   )

@@ -11,7 +11,7 @@ export const SERVICE_DETAILS: Record<string, ServiceDetails> = {
 
   'new-construction-plumbing': {
     slug: 'new-construction-plumbing',
-    heroImage: '/images/new-construction-slab.jpg',
+    heroImage: '/images/new-construction-pex.webp',
     heroH1: 'New Construction Plumbing — Rough-In to Finish on the Mississippi Gulf Coast',
     metaDescription:
       'Prestige Plumbing LLC handles the full plumbing scope on new residential and commercial builds throughout the Mississippi Gulf Coast — rough-in through finish, permitted and coordinated with your GC.',
@@ -51,7 +51,7 @@ export const SERVICE_DETAILS: Record<string, ServiceDetails> = {
 
   'plumbing-remodels': {
     slug: 'plumbing-remodels',
-    heroImage: '/images/new-construction-roughin.webp',
+    heroImage: '/images/bathroom-under-sink.webp',
     heroH1: 'Kitchen & Bathroom Remodel Plumbing — Mississippi Gulf Coast',
     metaDescription:
       'Kitchen and bathroom remodel plumbing on the Mississippi Gulf Coast — relocating supply and drain lines, fixture installation, permit coordination, and working alongside your GC or designer.',

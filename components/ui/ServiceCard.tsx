@@ -98,14 +98,15 @@ function ServiceIcon({ name, className }: { name: string; className?: string }) 
 interface ServiceCardProps {
   service: Service
   variant?: 'default' | 'featured' | 'compact'
+  href?: string
 }
 
 // ---------------------------------------------------------------------------
 // Component
 // ---------------------------------------------------------------------------
 
-export default function ServiceCard({ service, variant = 'default' }: ServiceCardProps) {
-  const href = `/request-service?service=${service.slug}`
+export default function ServiceCard({ service, variant = 'default', href: hrefProp }: ServiceCardProps) {
+  const href = hrefProp ?? `/request-service?service=${service.slug}`
 
   // -- default variant --
   if (variant === 'default') {
@@ -137,7 +138,7 @@ export default function ServiceCard({ service, variant = 'default' }: ServiceCar
             href={href}
             className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-blue-700 hover:text-blue-900 focus:outline-none group-hover:gap-2.5 transition-all duration-150"
           >
-            Request Service
+            {hrefProp ? 'View Service' : 'Request Service'}
             <svg className="h-4 w-4 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2.2} viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
             </svg>

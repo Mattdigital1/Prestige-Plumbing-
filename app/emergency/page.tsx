@@ -181,7 +181,7 @@ export default function EmergencyPage() {
                 Plumbing Emergency?{' '}
                 <span className="text-red-400">We Are Available Right Now.</span>
               </h1>
-              <p className="mt-5 max-w-2xl text-lg leading-relaxed text-red-100/70">
+              <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/85">
                 Burst pipes, sewage backups, flooding, and water heater failures don&rsquo;t wait for
                 business hours. {BUSINESS.name} dispatches licensed plumbers across the Mississippi
                 Gulf Coast — 24 hours a day, 7 days a week, including weekends and holidays.
@@ -213,7 +213,7 @@ export default function EmergencyPage() {
               >
                 {BUSINESS.phone}
               </a>
-              <p className="mt-2 text-sm text-red-200/60">
+              <p className="mt-2 text-sm text-white/70">
                 Our on-call plumber answers immediately
               </p>
               <div className="mt-6 flex flex-col gap-3">

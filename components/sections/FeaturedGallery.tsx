@@ -29,14 +29,14 @@ const GALLERY_ITEMS: GalleryItem[] = [
     category: 'New Construction',
     description: 'Rough-in plumbing for a new residential build in Jackson County — coordinated with the general contractor from slab to finish.',
     altText: 'New construction plumbing rough-in for a residential build',
-    imageSrc: '/images/commercial-construction.jpg',
+    imageSrc: '/images/new-construction-pex.webp',
   },
   {
     id: 'bathroom-remodel',
     category: 'Bathroom Remodel',
     description: 'Complete bathroom remodel plumbing: relocated drain lines, new supply connections, and fixture installation for a master bath renovation.',
     altText: 'Bathroom remodel plumbing with new fixtures installed',
-    imageSrc: '/images/pipe-wrench.jpg',
+    imageSrc: '/images/bathroom-under-sink.webp',
   },
   {
     id: 'water-heater',
