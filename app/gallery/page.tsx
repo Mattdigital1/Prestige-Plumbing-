@@ -138,8 +138,8 @@ const GALLERY_ITEMS: GalleryItem[] = [
   {
     id: 12,
     category: 'New Construction',
-    alt: 'Three phases of new construction plumbing',
-    label: 'Three Phases of Plumbing',
+    alt: 'New construction plumbing installation',
+    label: 'New Construction Plumbing Install',
     imageSrc: '/images/3PhasesOfPlumbing_BlogImage_450x360-02.webp',
   },
 
