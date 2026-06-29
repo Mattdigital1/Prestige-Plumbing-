@@ -258,7 +258,7 @@ export default function Header() {
               aria-label="Open navigation menu"
               aria-expanded={mobileNavOpen}
               aria-controls="mobile-nav"
-              className="lg:hidden flex-shrink-0 rounded-md p-2 text-slate-600 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 transition-colors"
+              className="lg:hidden ml-auto flex-shrink-0 rounded-md p-2 text-slate-600 hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 transition-colors"
             >
               <svg
                 className="h-6 w-6"
