@@ -13,9 +13,9 @@
 // ---------------------------------------------------------------------------
 
 import { useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import Breadcrumbs from '@/components/ui/Breadcrumbs'
-import ImagePlaceholder from '@/components/ui/ImagePlaceholder'
 
 // ---------------------------------------------------------------------------
 // Category definitions
@@ -41,7 +41,7 @@ const CATEGORIES: Category[] = [
 ]
 
 // ---------------------------------------------------------------------------
-// Gallery items — placeholder images awaiting real project photography
+// Gallery items
 // ---------------------------------------------------------------------------
 
 interface GalleryItem {
@@ -49,116 +49,188 @@ interface GalleryItem {
   category: Exclude<Category, 'All'>
   alt: string
   label: string
-  aspectRatio: '16/9' | '4/3' | '3/2'
+  imageSrc: string
 }
 
 const GALLERY_ITEMS: GalleryItem[] = [
-  // Residential (2)
+  // Residential
   {
     id: 1,
     category: 'Residential',
-    alt: 'Residential bathroom plumbing installation',
-    /* TODO: Add project photo: Residential bathroom plumbing installation */
-    label: 'Residential Installation',
-    aspectRatio: '4/3',
+    alt: 'Under-sink kitchen plumbing installation',
+    label: 'Under-Sink Plumbing',
+    imageSrc: '/images/under-sink-kitchen.webp',
   },
   {
     id: 2,
     category: 'Residential',
-    alt: 'Residential kitchen sink and fixture installation',
-    /* TODO: Add project photo: Residential kitchen sink and fixture installation */
-    label: 'Kitchen Fixture Install',
-    aspectRatio: '4/3',
+    alt: 'Faucet installation in a residential home',
+    label: 'Faucet Installation',
+    imageSrc: '/images/faucet-installation.jpg',
   },
-
-  // Commercial (2)
   {
     id: 3,
-    category: 'Commercial',
-    alt: 'Commercial plumbing rough-in for multi-unit building',
-    /* TODO: Add project photo: Commercial plumbing rough-in for multi-unit building */
-    label: 'Commercial Rough-In',
-    aspectRatio: '4/3',
+    category: 'Residential',
+    alt: 'Plumbing tools and equipment for residential service',
+    label: 'Residential Service',
+    imageSrc: '/images/plumbing-tools-floor.jpg',
   },
+
+  // Commercial
   {
     id: 4,
     category: 'Commercial',
-    alt: 'Commercial restroom plumbing installation',
-    /* TODO: Add project photo: Commercial restroom plumbing installation */
-    label: 'Commercial Restroom',
-    aspectRatio: '4/3',
+    alt: 'Commercial plumbing project on the Mississippi Gulf Coast',
+    label: 'Commercial Plumbing',
+    imageSrc: '/images/B8-Services-Commercial-Plumbing-1-1000x694.jpg',
   },
-
-  // New Construction (2)
   {
     id: 5,
-    category: 'New Construction',
-    alt: 'New construction plumbing rough-in for residential home',
-    /* TODO: Add project photo: New construction plumbing rough-in for residential home */
-    label: 'New Construction Rough-In',
-    aspectRatio: '4/3',
+    category: 'Commercial',
+    alt: 'Commercial pipe rack installation',
+    label: 'Commercial Pipe Rack',
+    imageSrc: '/images/commercial-pipe-rack.jpg',
   },
   {
     id: 6,
-    category: 'New Construction',
-    alt: 'New construction slab plumbing installation',
-    /* TODO: Add project photo: New construction slab plumbing installation */
-    label: 'Slab Plumbing',
-    aspectRatio: '4/3',
+    category: 'Commercial',
+    alt: 'Commercial construction plumbing installation',
+    label: 'Commercial Construction',
+    imageSrc: '/images/commercial-construction.jpg',
   },
-
-  // Remodels (2)
   {
     id: 7,
-    category: 'Remodels',
-    alt: 'Bathroom remodel plumbing — new fixtures and supply lines',
-    /* TODO: Add project photo: Bathroom remodel plumbing — new fixtures and supply lines */
-    label: 'Bathroom Remodel',
-    aspectRatio: '4/3',
-  },
-  {
-    id: 8,
-    category: 'Remodels',
-    alt: 'Kitchen remodel plumbing — relocated drain and supply lines',
-    /* TODO: Add project photo: Kitchen remodel plumbing — relocated drain and supply lines */
-    label: 'Kitchen Remodel',
-    aspectRatio: '4/3',
+    category: 'Commercial',
+    alt: 'Commercial boiler installation and service',
+    label: 'Commercial Boiler',
+    imageSrc: '/images/commercial-boiler.jpg',
   },
 
-  // Water Heaters (2)
+  // New Construction
+  {
+    id: 8,
+    category: 'New Construction',
+    alt: 'New construction plumbing rough-in for a residential build',
+    label: 'New Construction Rough-In',
+    imageSrc: '/images/new-construction-roughin.webp',
+  },
   {
     id: 9,
-    category: 'Water Heaters',
-    alt: 'Tankless water heater installation',
-    /* TODO: Add project photo: Tankless water heater installation */
-    label: 'Tankless Water Heater',
-    aspectRatio: '4/3',
+    category: 'New Construction',
+    alt: 'Under-slab plumbing installation for new construction',
+    label: 'Under-Slab Plumbing',
+    imageSrc: '/images/under-slab-plumbing.jpg',
   },
   {
     id: 10,
-    category: 'Water Heaters',
-    alt: 'Traditional tank water heater replacement',
-    /* TODO: Add project photo: Traditional tank water heater replacement */
-    label: 'Tank Water Heater',
-    aspectRatio: '4/3',
+    category: 'New Construction',
+    alt: 'Full rough-in plumbing installation for a new build',
+    label: 'Full Rough-In',
+    imageSrc: '/images/All-About-Plumbing-Rough-In--scaled.webp',
   },
-
-  // Repairs (2)
   {
     id: 11,
-    category: 'Repairs',
-    alt: 'Pipe repair — burst pipe replacement',
-    /* TODO: Add project photo: Pipe repair — burst pipe replacement */
-    label: 'Pipe Repair',
-    aspectRatio: '4/3',
+    category: 'New Construction',
+    alt: 'Bathroom plumbing rough-in dimensions for new construction',
+    label: 'Bathroom Rough-In',
+    imageSrc: '/images/bathroom-plumbing-rough-in-dimensions-english-hero.jpg',
   },
   {
     id: 12,
+    category: 'New Construction',
+    alt: 'Three phases of new construction plumbing',
+    label: 'Three Phases of Plumbing',
+    imageSrc: '/images/3PhasesOfPlumbing_BlogImage_450x360-02.webp',
+  },
+
+  // Remodels
+  {
+    id: 13,
+    category: 'Remodels',
+    alt: 'Kitchen plumbing remodel with new supply and drain lines',
+    label: 'Kitchen Remodel',
+    imageSrc: '/images/Kitchen-Plumbing-Remodel3.webp',
+  },
+  {
+    id: 14,
+    category: 'Remodels',
+    alt: 'Kitchen plumbing renovation and fixture upgrade',
+    label: 'Kitchen Plumbing',
+    imageSrc: '/images/kitchen-1-scaled-e1668464207381.jpg',
+  },
+  {
+    id: 15,
+    category: 'Remodels',
+    alt: 'Bathroom remodel plumbing with new under-sink connections',
+    label: 'Bathroom Remodel',
+    imageSrc: '/images/bathroom-under-sink.webp',
+  },
+
+  // Water Heaters
+  {
+    id: 16,
+    category: 'Water Heaters',
+    alt: 'Tankless water heater installation',
+    label: 'Tankless Installation',
+    imageSrc: '/images/tankless-water-heater-installation-or-replacement-1.jpg',
+  },
+  {
+    id: 17,
+    category: 'Water Heaters',
+    alt: 'Water heater repair service',
+    label: 'Water Heater Repair',
+    imageSrc: '/images/water-heater-repair.webp',
+  },
+  {
+    id: 18,
+    category: 'Water Heaters',
+    alt: 'Traditional tank water heater replacement',
+    label: 'Tank Water Heater',
+    imageSrc: '/images/water-heater-tank.jpg',
+  },
+  {
+    id: 19,
+    category: 'Water Heaters',
+    alt: 'Water heater installation mounted on wall',
+    label: 'Water Heater Install',
+    imageSrc: '/images/water-heater-install.jpg',
+  },
+
+  // Repairs
+  {
+    id: 20,
     category: 'Repairs',
-    alt: 'Drain line repair and hydro-jetting service',
-    /* TODO: Add project photo: Drain line repair and hydro-jetting service */
-    label: 'Drain Line Repair',
-    aspectRatio: '4/3',
+    alt: 'Burst pipe repair following storm damage',
+    label: 'Burst Pipe Repair',
+    imageSrc: '/images/burst-pipe.webp',
+  },
+  {
+    id: 21,
+    category: 'Repairs',
+    alt: 'Signs you need burst pipe repair services',
+    label: 'Pipe Repair',
+    imageSrc: '/images/Signs-You-Need-Burst-Pipe-Repair-Services.jpg',
+  },
+  {
+    id: 22,
+    category: 'Repairs',
+    alt: 'Professional drain cleaning service',
+    label: 'Drain Cleaning',
+    imageSrc: '/images/drain-cleaning.jpg',
+  },
+  {
+    id: 23,
+    category: 'Repairs',
+    alt: 'Hydro-jetting drain and sewer line cleaning',
+    label: 'Hydro-Jetting',
+    imageSrc: '/images/hydro-jetting-services-1.jpg',
+  },
+  {
+    id: 24,
+    category: 'Repairs',
+    alt: 'Sink and drain line repair',
+    label: 'Drain Repair',
+    imageSrc: '/images/sink-drain-repair.jpg',
   },
 ]
 
@@ -284,14 +356,18 @@ export default function GalleryPage() {
             >
               {filtered.map((item) => (
                 <li key={item.id} className="group">
-                  {/* TODO: Add project photo: {item.alt} */}
                   <div className="relative overflow-hidden rounded-xl bg-white border border-slate-200 shadow-sm hover:shadow-md transition-shadow duration-200">
-                    {/* Image area */}
-                    <ImagePlaceholder
-                      alt={item.alt}
-                      aspectRatio={item.aspectRatio}
-                      className="rounded-none"
-                    />
+                    {/* Image */}
+                    <div className="relative h-56 w-full overflow-hidden">
+                      <Image
+                        src={item.imageSrc}
+                        alt={item.alt}
+                        fill
+                        loading="lazy"
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                    </div>
 
                     {/* Category badge — overlaid at bottom-left of image */}
                     <div className="absolute bottom-3 left-3">
@@ -308,10 +384,6 @@ export default function GalleryPage() {
             </div>
           )}
 
-          {/* Photo disclaimer */}
-          <p className="mt-8 text-xs text-center text-slate-400">
-            Project photos will be added as work is completed. Images shown are placeholders.
-          </p>
         </div>
       </section>
 
