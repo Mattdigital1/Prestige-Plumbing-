@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import dynamic from 'next/dynamic'
 
 import Hero from '@/components/sections/Hero'
 import QuickQuoteForm from '@/components/sections/QuickQuoteForm'
@@ -11,9 +12,13 @@ import NewConstructionSection from '@/components/sections/NewConstructionSection
 import WaterHeatersSection from '@/components/sections/WaterHeatersSection'
 import FeaturedGallery from '@/components/sections/FeaturedGallery'
 import ReviewsSection from '@/components/sections/ReviewsSection'
-import FAQSection from '@/components/sections/FAQSection'
 import ServiceAreasList from '@/components/sections/ServiceAreasList'
 import FinalCTA from '@/components/sections/FinalCTA'
+
+const FAQSection = dynamic(() => import('@/components/sections/FAQSection'), {
+  ssr: true,
+  loading: () => <div className="py-20 bg-white" aria-hidden="true" />,
+})
 
 import { BUSINESS } from '@/lib/config/business'
 

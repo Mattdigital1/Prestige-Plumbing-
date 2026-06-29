@@ -118,8 +118,8 @@ export default function Hero() {
             <TrustBadges />
           </div>
 
-          {/* ── Right: quote form ── */}
-          <div className="overflow-hidden rounded-xl shadow-2xl ring-1 ring-white/10">
+          {/* ── Right: quote form — hidden on mobile, visible on desktop ── */}
+          <div className="hidden lg:block overflow-hidden rounded-xl shadow-2xl ring-1 ring-white/10">
             <div className="bg-[#1e3a5f] px-6 py-5">
               <h2 className="text-lg font-bold text-white">Get a Free Estimate</h2>
               <p className="mt-0.5 text-sm text-slate-300">
