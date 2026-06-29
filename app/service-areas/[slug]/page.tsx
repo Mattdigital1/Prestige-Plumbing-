@@ -15,9 +15,10 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }): Promise<Metadata> {
-  const area = SERVICE_AREAS.find((a) => a.slug === params.slug)
+  const { slug } = await params
+  const area = SERVICE_AREAS.find((a) => a.slug === slug)
 
   if (!area) {
     return {
@@ -29,12 +30,12 @@ export async function generateMetadata({
     title: area.seoTitle,
     description: area.seoDescription,
     alternates: {
-      canonical: `/service-areas/${area.slug}`,
+      canonical: `/service-areas/${slug}`,
     },
     openGraph: {
       title: area.seoTitle,
       description: area.seoDescription,
-      url: `${BUSINESS.siteUrl}/service-areas/${area.slug}`,
+      url: `${BUSINESS.siteUrl}/service-areas/${slug}`,
       siteName: BUSINESS.name,
       locale: 'en_US',
       type: 'website',
@@ -70,8 +71,9 @@ const CITY_FAQS = (cityName: string, county: string) => [
   },
 ]
 
-export default function CityPage({ params }: { params: { slug: string } }) {
-  const area = SERVICE_AREAS.find((a) => a.slug === params.slug)
+export default async function CityPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const area = SERVICE_AREAS.find((a) => a.slug === slug)
 
   if (!area) {
     notFound()
