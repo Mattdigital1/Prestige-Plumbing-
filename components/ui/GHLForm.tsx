@@ -13,6 +13,7 @@ export default function GHLForm({
   return (
     <iframe
       src={FORM_SRC}
+      loading="lazy"
       style={{ width: '100%', height: `${height}px`, border: 'none', display: 'block', minHeight: '580px' }}
       id={instanceId}
       data-layout="{'id':'INLINE'}"

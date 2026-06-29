@@ -109,7 +109,7 @@ export default function RootLayout({
         <MobileCallBar />
         <Script
           src="https://links.m2squareddigital.com/js/form_embed.js"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
       </body>
     </html>
