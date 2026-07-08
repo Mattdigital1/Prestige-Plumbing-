@@ -53,7 +53,7 @@ export default function PrivacyPolicyPage() {
             Privacy Policy
           </h1>
           <p className="mt-4 text-sm text-slate-400">
-            Last updated: June 2025
+            Last updated: June 2026
           </p>
         </div>
       </section>
@@ -158,12 +158,28 @@ export default function PrivacyPolicyPage() {
                 communications.
               </p>
               <p>
-                By checking the SMS consent option on our contact or service request
-                form, you agree to receive text messages from {BUSINESS.name} at the
-                phone number provided. Consent to receive SMS messages is not required
-                as a condition of receiving plumbing services. Message and data rates
-                may apply. You may opt out at any time by replying STOP to any message
-                or by contacting us directly.
+                By submitting our contact or service request form, you agree to receive
+                SMS messages and/or calls from {BUSINESS.name} at the phone number
+                provided. Message and data rates may apply. Message frequency varies
+                based on your service request and communication preferences.
+              </p>
+              <p>
+                <strong>Opt-out:</strong> Reply <strong>STOP</strong> to any SMS message
+                to unsubscribe at any time. After opting out, you will receive one final
+                confirmation message and no further SMS messages will be sent.
+              </p>
+              <p>
+                <strong>Help:</strong> Reply <strong>HELP</strong> to any SMS message
+                or contact us at{' '}
+                <a href={BUSINESS.phoneLink} className="underline underline-offset-2 hover:text-slate-900">
+                  {BUSINESS.phone}
+                </a>{' '}
+                for assistance.
+              </p>
+              <p>
+                Consent to receive SMS messages is <strong>not</strong> required as a
+                condition of receiving plumbing services or obtaining a free estimate.
+                Mobile carriers are not liable for delayed or undelivered messages.
               </p>
               <p>
                 We do not share your phone number or SMS consent with third parties for
