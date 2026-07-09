@@ -5,6 +5,15 @@ const nextConfig = {
     minimumCacheTTL: 31536000,
     remotePatterns: [],
   },
+  async redirects() {
+    return [
+      {
+        source: '/:path*.html',
+        destination: '/:path*',
+        permanent: true,
+      },
+    ]
+  },
   async headers() {
     return [
       {
