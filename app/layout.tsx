@@ -111,6 +111,13 @@ export default function RootLayout({
           src="https://links.m2squareddigital.com/js/form_embed.js"
           strategy="lazyOnload"
         />
+        <Script
+          src="https://widgets.leadconnectorhq.com/loader.js"
+          data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+          data-widget-id="6a4fcd8db90c051587e163df"
+          data-source="WEB_USER"
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   )
