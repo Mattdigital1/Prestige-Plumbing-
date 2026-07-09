@@ -10,10 +10,6 @@ export const metadata: Metadata = {
   },
 }
 
-// ---------------------------------------------------------------------------
-// Helpers
-// ---------------------------------------------------------------------------
-
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
     <h2 className="mt-10 mb-3 text-lg font-bold tracking-tight text-slate-900 sm:text-xl first:mt-0">
@@ -37,10 +33,6 @@ function UL({ children }: { children: React.ReactNode }) {
     </ul>
   )
 }
-
-// ---------------------------------------------------------------------------
-// Page
-// ---------------------------------------------------------------------------
 
 export default function PrivacyPolicyPage() {
   return (
@@ -66,10 +58,11 @@ export default function PrivacyPolicyPage() {
             {/* Intro */}
             <Prose>
               <p>
-                {BUSINESS.name} (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) is committed to protecting the
-                privacy of visitors to our website and customers who contact us for
-                plumbing services. This Privacy Policy describes what information we
-                collect, how we use it, and your rights regarding that information.
+                {BUSINESS.name} (&ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) is committed to
+                protecting the privacy of visitors to our website and customers who
+                contact us for plumbing services. This Privacy Policy describes what
+                information we collect, how we use it, and your rights regarding that
+                information.
               </p>
               <p>
                 By using our website or submitting a service request, you agree to the
@@ -77,8 +70,38 @@ export default function PrivacyPolicyPage() {
               </p>
             </Prose>
 
-            {/* 1. Information We Collect */}
-            <SectionHeading>1. Information We Collect</SectionHeading>
+            {/* Definitions */}
+            <SectionHeading>1. Definitions</SectionHeading>
+            <Prose>
+              <p>For the purposes of this Privacy Policy:</p>
+            </Prose>
+            <UL>
+              <li>
+                <strong>Company</strong> refers to {BUSINESS.name},{' '}
+                {BUSINESS.address.full}.
+              </li>
+              <li>
+                <strong>Personal Data</strong> means any information that relates to
+                an identified or identifiable individual.
+              </li>
+              <li>
+                <strong>Service</strong> refers to our website at{' '}
+                {BUSINESS.domain} and the plumbing services we provide.
+              </li>
+              <li>
+                <strong>You</strong> means the individual accessing or using our
+                Service, or the company or other legal entity on behalf of which such
+                individual is accessing or using the Service.
+              </li>
+              <li>
+                <strong>SMS / Text Message</strong> refers to Short Message Service
+                communications sent to your mobile phone number as part of our A2P
+                10DLC messaging program.
+              </li>
+            </UL>
+
+            {/* Information We Collect */}
+            <SectionHeading>2. Information We Collect</SectionHeading>
             <Prose>
               <p>
                 We collect personal information you voluntarily provide when you contact
@@ -90,14 +113,21 @@ export default function PrivacyPolicyPage() {
               <li><strong>Name</strong> — your first and last name</li>
               <li><strong>Phone number</strong> — your primary contact number</li>
               <li><strong>Email address</strong> — for correspondence and follow-up</li>
-              <li><strong>Service address</strong> — the address where plumbing service is requested</li>
+              <li>
+                <strong>Service address</strong> — the address where plumbing service
+                is requested
+              </li>
               <li>
                 <strong>Photos</strong> — images of plumbing issues or project details
                 that you voluntarily submit through our contact or service request form
               </li>
               <li>
-                <strong>Service request details</strong> — a description of the plumbing
-                issue or project you need assistance with
+                <strong>Service request details</strong> — a description of the
+                plumbing issue or project you need assistance with
+              </li>
+              <li>
+                <strong>SMS consent</strong> — your opt-in agreement to receive text
+                messages from us
               </li>
             </UL>
             <Prose>
@@ -109,46 +139,30 @@ export default function PrivacyPolicyPage() {
               </p>
             </Prose>
 
-            {/* 2. How We Use Your Information */}
-            <SectionHeading>2. How We Use Your Information</SectionHeading>
+            {/* How We Use Your Information */}
+            <SectionHeading>3. How We Use Your Information</SectionHeading>
             <Prose>
               <p>We use the information you provide for the following purposes:</p>
             </Prose>
             <UL>
+              <li>To provide and maintain our Service</li>
               <li>To respond to your service request or inquiry</li>
               <li>To schedule plumbing service appointments</li>
               <li>To communicate with you about the status of your service request</li>
               <li>To provide estimates for requested plumbing work</li>
+              <li>To send SMS messages you have consented to receive</li>
               <li>To follow up after service has been completed</li>
               <li>To improve our website and customer communication processes</li>
+              <li>To analyze usage trends and improve our Service</li>
             </UL>
             <Prose>
               <p className="mt-3">
-                We do not sell, rent, or trade your personal information to third parties
-                for marketing purposes.
+                We do not sell, rent, or trade your personal information to third
+                parties for marketing purposes.
               </p>
             </Prose>
 
-            {/* 3. Contact Information Sharing */}
-            <SectionHeading>3. Contact Information Sharing</SectionHeading>
-            <Prose>
-              <p>
-                Your contact information — including name, phone number, email address,
-                and service address — is used solely to communicate with you regarding
-                your plumbing service request. We do not share this information with
-                other businesses or individuals for purposes unrelated to fulfilling
-                your service request.
-              </p>
-              <p>
-                In limited circumstances, we may share your information with trusted
-                service partners or subcontractors who assist us in providing plumbing
-                services, only to the extent necessary to fulfill your request. These
-                parties are required to protect your information and may not use it for
-                any other purpose.
-              </p>
-            </Prose>
-
-            {/* 4. SMS Consent and Messaging */}
+            {/* SMS Consent */}
             <SectionHeading>4. SMS Consent and Text Messaging</SectionHeading>
             <Prose>
               <p>
@@ -171,7 +185,10 @@ export default function PrivacyPolicyPage() {
               <p>
                 <strong>Help:</strong> Reply <strong>HELP</strong> to any SMS message
                 or contact us at{' '}
-                <a href={BUSINESS.phoneLink} className="underline underline-offset-2 hover:text-slate-900">
+                <a
+                  href={BUSINESS.phoneLink}
+                  className="underline underline-offset-2 hover:text-slate-900"
+                >
                   {BUSINESS.phone}
                 </a>{' '}
                 for assistance.
@@ -187,8 +204,27 @@ export default function PrivacyPolicyPage() {
               </p>
             </Prose>
 
-            {/* 5. Third-Party Services */}
-            <SectionHeading>5. Third-Party Services</SectionHeading>
+            {/* Contact Information Sharing */}
+            <SectionHeading>5. Contact Information Sharing</SectionHeading>
+            <Prose>
+              <p>
+                Your contact information — including name, phone number, email address,
+                and service address — is used solely to communicate with you regarding
+                your plumbing service request. We do not share this information with
+                other businesses or individuals for purposes unrelated to fulfilling
+                your service request.
+              </p>
+              <p>
+                In limited circumstances, we may share your information with trusted
+                service partners or subcontractors who assist us in providing plumbing
+                services, only to the extent necessary to fulfill your request. These
+                parties are required to protect your information and may not use it for
+                any other purpose.
+              </p>
+            </Prose>
+
+            {/* Third-Party Services */}
+            <SectionHeading>6. Third-Party Services</SectionHeading>
             <Prose>
               <p>
                 We may use third-party tools and platforms to help manage customer
@@ -205,8 +241,8 @@ export default function PrivacyPolicyPage() {
               </p>
             </Prose>
 
-            {/* 6. Data Retention */}
-            <SectionHeading>6. Data Retention</SectionHeading>
+            {/* Data Retention */}
+            <SectionHeading>7. Data Retention</SectionHeading>
             <Prose>
               <p>
                 We retain personal information for as long as necessary to fulfill the
@@ -221,43 +257,56 @@ export default function PrivacyPolicyPage() {
               </p>
             </Prose>
 
-            {/* 7. Data Security */}
-            <SectionHeading>7. Data Security</SectionHeading>
+            {/* Data Security */}
+            <SectionHeading>8. Data Security</SectionHeading>
             <Prose>
               <p>
                 We take reasonable steps to protect the personal information you share
                 with us from unauthorized access, disclosure, or misuse. However, no
-                method of transmission over the internet is completely secure. We cannot
-                guarantee absolute security of information transmitted through our
-                website.
+                method of transmission over the Internet, or method of electronic
+                storage, is 100% secure. We cannot guarantee absolute security of
+                information transmitted through our website.
               </p>
             </Prose>
 
-            {/* 8. Children's Privacy */}
-            <SectionHeading>8. Children&apos;s Privacy</SectionHeading>
+            {/* Legal Disclosure */}
+            <SectionHeading>9. Legal Disclosure</SectionHeading>
+            <Prose>
+              <p>
+                We may disclose your personal information if required to do so by law
+                or in response to valid requests by public authorities (e.g., a court
+                or government agency). We may also disclose your information when we
+                believe in good faith that disclosure is necessary to protect our
+                rights, protect your safety or the safety of others, investigate fraud,
+                or respond to a government request.
+              </p>
+            </Prose>
+
+            {/* Children's Privacy */}
+            <SectionHeading>10. Children&apos;s Privacy</SectionHeading>
             <Prose>
               <p>
                 Our website is not directed to children under the age of 13, and we do
                 not knowingly collect personal information from children. If you believe
-                a child has provided us with personal information, please contact us and
-                we will promptly delete it.
+                a child has provided us with personal information, please contact us
+                and we will promptly delete it.
               </p>
             </Prose>
 
-            {/* 9. Changes to This Policy */}
-            <SectionHeading>9. Changes to This Policy</SectionHeading>
+            {/* Changes */}
+            <SectionHeading>11. Changes to This Policy</SectionHeading>
             <Prose>
               <p>
                 We may update this Privacy Policy from time to time to reflect changes
                 in our practices or applicable law. When we update the policy, we will
-                revise the &ldquo;Last updated&rdquo; date at the top of this page. Continued use
-                of our website after any changes constitutes your acceptance of the
+                revise the &ldquo;Last updated&rdquo; date at the top of this page. Continued
+                use of our website after any changes constitutes your acceptance of the
                 updated policy.
               </p>
             </Prose>
 
-            {/* 10. Contact */}
-            <SectionHeading>10. Contact Us</SectionHeading>
+            {/* Contact */}
+            <SectionHeading>12. Contact Us</SectionHeading>
             <Prose>
               <p>
                 If you have questions, concerns, or requests related to this Privacy
@@ -266,7 +315,7 @@ export default function PrivacyPolicyPage() {
             </Prose>
             <div className="mt-4 rounded-lg border border-slate-200 bg-slate-50 px-6 py-5">
               <p className="font-semibold text-slate-900">{BUSINESS.name}</p>
-              <p className="mt-1 text-sm text-slate-700">{BUSINESS.serviceArea}</p>
+              <p className="mt-1 text-sm text-slate-700">{BUSINESS.address.full}</p>
               <div className="mt-3 flex flex-col gap-1.5 text-sm text-slate-700">
                 <a
                   href={BUSINESS.phoneLink}

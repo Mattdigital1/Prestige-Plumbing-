@@ -193,13 +193,22 @@ export default function Footer() {
               &copy; {currentYear} {BUSINESS.name}. All rights reserved.
             </p>
 
-            {/* Privacy link */}
-            <Link
-              href="/privacy-policy"
-              className="text-xs text-slate-400 hover:text-blue-600 transition-colors"
-            >
-              Privacy Policy
-            </Link>
+            {/* Legal links */}
+            <div className="flex items-center gap-4">
+              <Link
+                href="/privacy-policy"
+                className="text-xs text-slate-400 hover:text-blue-600 transition-colors"
+              >
+                Privacy Policy
+              </Link>
+              <span className="text-xs text-slate-300" aria-hidden="true">·</span>
+              <Link
+                href="/terms"
+                className="text-xs text-slate-400 hover:text-blue-600 transition-colors"
+              >
+                Terms &amp; Conditions
+              </Link>
+            </div>
           </div>
 
           {/* Disclaimer */}
