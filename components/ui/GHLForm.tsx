@@ -1,56 +1,40 @@
-import Link from 'next/link'
+import { BUSINESS } from '@/lib/config/business'
 
-const FORM_ID = 'AjSRTxujnkzD4LGXSNji'
-const FORM_SRC = `https://links.m2squareddigital.com/widget/form/${FORM_ID}`
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface GHLFormProps {
   instanceId?: string
   height?: number
 }
 
-export default function GHLForm({
-  instanceId = `inline-${FORM_ID}`,
-  height = 652,
-}: GHLFormProps) {
+export default function GHLForm({ instanceId: _instanceId, height: _height }: GHLFormProps) {
   return (
-    <>
-      <iframe
-        src={FORM_SRC}
-        loading="lazy"
-        style={{ width: '100%', height: `${height}px`, border: 'none', display: 'block', minHeight: '580px' }}
-        id={instanceId}
-        data-layout="{'id':'INLINE'}"
-        data-trigger-type="alwaysShow"
-        data-trigger-value=""
-        data-activation-type="alwaysActivated"
-        data-activation-value=""
-        data-deactivation-type="neverDeactivate"
-        data-deactivation-value=""
-        data-form-name="Prestige Plumbing"
-        data-height={height}
-        data-layout-iframe-id={instanceId}
-        data-form-id={FORM_ID}
-        title="Prestige Plumbing — Service Request Form"
-      />
-      <div className="px-4 py-3 bg-slate-50 border-t border-slate-100 space-y-1.5">
-        <p className="text-xs leading-relaxed text-slate-500">
-          By submitting this form, you agree to receive SMS messages and/or calls from Prestige
-          Plumbing LLC at the number provided. Msg &amp; data rates may apply. Message frequency
-          varies. Reply <strong>STOP</strong> to opt out, <strong>HELP</strong> for help. Consent
-          is not a condition of purchase.
-        </p>
-        <p className="text-xs text-slate-400">
-          By submitting you also agree to our{' '}
-          <Link href="/privacy-policy" className="underline underline-offset-2 hover:text-slate-600 transition-colors">
-            Privacy Policy
-          </Link>
-          {' '}and{' '}
-          <Link href="/terms" className="underline underline-offset-2 hover:text-slate-600 transition-colors">
-            Terms &amp; Conditions
-          </Link>
-          .
-        </p>
+    <div className="flex flex-col items-center justify-center gap-5 bg-white px-6 py-12 text-center">
+      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-100">
+        <svg
+          className="h-7 w-7 text-blue-700"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
+          />
+        </svg>
       </div>
-    </>
+      <div>
+        <p className="text-base font-semibold text-slate-800">Call or Text Us Directly</p>
+        <p className="mt-1 text-sm text-slate-500">Our team is available 24/7 for your plumbing needs.</p>
+      </div>
+      <a
+        href={BUSINESS.phoneLink}
+        className="inline-flex items-center gap-2 rounded-md bg-blue-700 px-6 py-3 text-base font-bold text-white shadow-sm transition-colors hover:bg-blue-600"
+      >
+        {BUSINESS.phone}
+      </a>
+    </div>
   )
 }
