@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-const FORM_ID = 'AjSRTxujnkzD4LGXSNji'
+const FORM_ID = 'Gv4w0P5hFGGrQTL5Qcbe'
 const FORM_SRC = `https://links.m2squareddigital.com/widget/form/${FORM_ID}`
 
 interface GHLFormProps {
