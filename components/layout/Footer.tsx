@@ -197,14 +197,14 @@ export default function Footer() {
             <div className="flex items-center gap-4">
               <Link
                 href="/privacy-policy"
-                className="text-xs text-slate-400 hover:text-blue-600 transition-colors"
+                className="text-xs font-medium text-slate-500 hover:text-blue-600 transition-colors underline underline-offset-2"
               >
                 Privacy Policy
               </Link>
               <span className="text-xs text-slate-300" aria-hidden="true">·</span>
               <Link
                 href="/terms"
-                className="text-xs text-slate-400 hover:text-blue-600 transition-colors"
+                className="text-xs font-medium text-slate-500 hover:text-blue-600 transition-colors underline underline-offset-2"
               >
                 Terms &amp; Conditions
               </Link>
